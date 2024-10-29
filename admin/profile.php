@@ -1,5 +1,6 @@
 <?php
-include '../controller/action-profile.php';
+session_start();
+include '../controller/action-user.php';
 ?>
 
 <!DOCTYPE html>
@@ -67,58 +68,78 @@ include '../controller/action-profile.php';
                                     </div>
                                     <hr class="my-0" />
                                     <div class="card-body">
-                                        <form id="formAccountSettings" action="../controller/action-profile.php"
-                                            method="post">
+                                        <form id="formAccountSettings"
+                                            action="../controller/action-user.php?id=<?php echo isset($_GET['edit']) ? $getDataUserId['id'] : '' ?>"
+                                            method="post" enctype="multipart/form-data">
+
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
                                                     <label for="firstName" class="form-label">First Name</label>
                                                     <input class="form-control" type="text" id="firstName" name="name"
-                                                        value="" autofocus />
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['name'] : '' ?>"
+                                                        autofocus />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="lastName" class="form-label">Last Name</label>
                                                     <input class="form-control" type="text" name="last_name"
-                                                        id="lastName" value="" />
+                                                        id="lastName"
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['last_name'] : '' ?>" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="email" class="form-label">E-mail</label>
                                                     <input class="form-control" type="text" id="email" name="email"
-                                                        value="" placeholder="john.doe@example.com" />
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['email'] : '' ?>"
+                                                        placeholder="john.doe@example.com" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="organization" class="form-label">Organization</label>
                                                     <input type="text" class="form-control" id="organization"
-                                                        name="organization" value="" />
+                                                        name="organization"
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['organization'] : '' ?>" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label" for="phoneNumber">Phone Number</label>
                                                     <div class="input-group input-group-merge">
                                                         <span class="input-group-text">ID (+62)</span>
-                                                        <input type="text" name="phone" value="" class="form-control"
-                                                            placeholder="202 555 0111" />
+                                                        <input type="text" name="phone"
+                                                            value="<?php echo isset($_GET['edit']) ? $getDataUserId['phone'] : '' ?>"
+                                                            class="form-control" placeholder="202 555 0111" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="address" class="form-label">Address</label>
-                                                    <input type="text" class="form-control" name="address" value=""
+                                                    <input type="text" class="form-control" name="address"
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['address'] : '' ?>"
                                                         placeholder="Address" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="address" class="form-label">Password</label>
+                                                    <input type="password" class="form-control" name="password"
+                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['password'] : '' ?>"
+                                                        placeholder="***" />
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label for="" class="form-label">Description</label>
                                                     <textarea class="form-control" name="description" cols="30"
-                                                        rows="10"></textarea>
+                                                        rows="10"><?php echo isset($_GET['edit']) ? $getDataUserId['description'] : '' ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label for="" class="form-label">Photo</label>
-                                                    <input type="file" name="image" class="form-control" >
+                                                    <input type="file" name="foto" class="form-control"
+                                                        accept=".jpg,.png">
+                                                    <img src="upload/<?php echo $getDataUserId['foto']?>" width="100"
+                                                        class="mt-3" alt="">
                                                 </div>
                                             </div>
                                             <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2" name="save">Save
+                                                <button type="submit" class="btn btn-primary me-2"
+                                                    name="<?php echo isset($_GET['edit']) ? 'edit' : 'save' ?>">Save
                                                     changes</button>
                                                 <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                                             </div>

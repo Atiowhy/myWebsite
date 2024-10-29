@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include '../controller/action-user.php';
+include '../controller/action-project.php';
  ?>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
@@ -46,24 +46,26 @@ include '../controller/action-user.php';
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h1>Project</h1>
+                                        <h1><?php echo isset($_GET['edit']) ? 'Edit' : 'Add' ?> Project</h1>
                                         <p>Frontend Developer</p>
                                     </div>
                                     <div class="card-body">
-                                        <form action="../controller/action-project.php" method="post">
+                                        <form action="../controller/action-project.php" method="post"
+                                            enctype="multipart/form-data">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Name</label>
                                                         <input type="text" name="project_name" class="form-control"
-                                                            required>
+                                                            required
+                                                            value="<?php echo $dataProjectId['project_name'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Technology</label>
                                                         <input type="text" name="technology" class="form-control"
-                                                            required>
+                                                            required value="<?php echo $dataProjectId['technology'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,7 +74,7 @@ include '../controller/action-user.php';
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Description</label>
                                                         <textarea name="description" id="" cols="30" rows="10"
-                                                            class="form-control"></textarea>
+                                                            class="form-control"><?php echo $dataProjectId['description'] ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,13 +82,15 @@ include '../controller/action-user.php';
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Date Created</label>
-                                                        <input type="date" name="create_date" class="form-control">
+                                                        <input type="date" name="create_date" class="form-control"
+                                                            value="<?php echo $dataProjectId['create_date'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Date Finished</label>
-                                                        <input type="date" name="finish_date" class="form-control">
+                                                        <input type="date" name="finish_date" class="form-control"
+                                                            value="<?php echo $dataProjectId['finish_date'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,12 +98,15 @@ include '../controller/action-user.php';
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Image</label>
-                                                        <input type="file" name="image" id="" class="form-control">
+                                                        <input type="file" name="foto" id="" class="form-control">
+                                                        <img src="../admin/upload/<?php echo $dataProjectId['foto']?>"
+                                                            alt="" class="w-50 h-50 mt-4">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="btn-post">
-                                                <button class="btn btn-success" type="submit" name="submit">Add
+                                                <button class="btn btn-success" type="submit"
+                                                    name="<?php echo isset($_GET['edit']) ? $dataProjectId['id'] : '' ?>"><?php echo isset($_GET['edit']) ? 'Edit' : 'Add'?>
                                                     Project</button>
                                             </div>
                                         </form>

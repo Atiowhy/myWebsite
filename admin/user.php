@@ -49,12 +49,16 @@ include '../controller/action-user.php';
                                         <h1>Data User</h1>
                                     </div>
                                     <div class="card-body">
+                                        <div class="btn-cta d-flex justify-content-end mb-2">
+                                            <a href="profile.php" class="btn btn-success">Add</a>
+                                        </div>
                                         <table class="table table-striped shadow">
                                             <thead class="bg-primary">
                                                 <tr>
                                                     <th class="text-white">No</th>
                                                     <th class="text-white">Name</th>
                                                     <th class="text-white">Email</th>
+                                                    <th class="text-white">Foto</th>
                                                     <th class="text-white">Action</th>
                                                 </tr>
                                             </thead>
@@ -67,6 +71,10 @@ include '../controller/action-user.php';
                                                     <td><?php echo $no++ ?></td>
                                                     <td><?php echo $dataUser['name'] ?></td>
                                                     <td><?php echo $dataUser['email'] ?></td>
+                                                    <td><img width="100"
+                                                            src="../admin/upload/<?php echo $dataUser['foto'] ?>"
+                                                            alt="">
+                                                    </td>
                                                     <td>
                                                         <a href="../controller/action-user.php?delete=<?php echo $dataUser['id'] ?>"
                                                             class="btn btn-danger">Delete</a>

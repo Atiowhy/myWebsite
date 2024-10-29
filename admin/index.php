@@ -2,6 +2,7 @@
 session_start();
 include '../controller/action-user.php';
 include '../controller/action-project.php'
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
