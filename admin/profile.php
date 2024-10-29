@@ -133,8 +133,8 @@ include '../controller/action-user.php';
                                                     <label for="" class="form-label">Photo</label>
                                                     <input type="file" name="foto" class="form-control"
                                                         accept=".jpg,.png">
-                                                    <img src="upload/<?php echo $getDataUserId['foto']?>" width="100"
-                                                        class="mt-3" alt="">
+                                                    <img src="upload/<?php echo isset($_GET['edit']) ? $getDataUserId['foto'] : '' ?>"
+                                                        width="100" class="mt-3" alt="">
                                                 </div>
                                             </div>
                                             <div class="mt-2">

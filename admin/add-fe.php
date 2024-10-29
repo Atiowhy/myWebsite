@@ -50,22 +50,26 @@ include '../controller/action-project.php';
                                         <p>Frontend Developer</p>
                                     </div>
                                     <div class="card-body">
-                                        <form action="../controller/action-project.php" method="post"
-                                            enctype="multipart/form-data">
+                                        <form
+                                            action="../controller/action-project.php?id=<?php echo isset($_GET['edit']) ? $dataProjectId['id'] : '' ?>"
+                                            method="post" enctype="multipart/form-data">
+
+
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Name</label>
                                                         <input type="text" name="project_name" class="form-control"
                                                             required
-                                                            value="<?php echo $dataProjectId['project_name'] ?>">
+                                                            value="<?php echo isset($_GET['edit']) ? $dataProjectId['project_name'] : '' ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Technology</label>
                                                         <input type="text" name="technology" class="form-control"
-                                                            required value="<?php echo $dataProjectId['technology'] ?>">
+                                                            required
+                                                            value="<?php echo isset($_GET['edit']) ? $dataProjectId['technology'] : '' ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,7 +78,7 @@ include '../controller/action-project.php';
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Description</label>
                                                         <textarea name="description" id="" cols="30" rows="10"
-                                                            class="form-control"><?php echo $dataProjectId['description'] ?></textarea>
+                                                            class="form-control"><?php echo isset($_GET['edit']) ? $dataProjectId['description'] : '' ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,14 +87,14 @@ include '../controller/action-project.php';
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Date Created</label>
                                                         <input type="date" name="create_date" class="form-control"
-                                                            value="<?php echo $dataProjectId['create_date'] ?>">
+                                                            value="<?php echo isset($_GET['edit']) ? $dataProjectId['create_date'] : '' ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Date Finished</label>
                                                         <input type="date" name="finish_date" class="form-control"
-                                                            value="<?php echo $dataProjectId['finish_date'] ?>">
+                                                            value="<?php echo isset($_GET['edit']) ? $dataProjectId['finish_date'] : '' ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,14 +103,14 @@ include '../controller/action-project.php';
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Image</label>
                                                         <input type="file" name="foto" id="" class="form-control">
-                                                        <img src="../admin/upload/<?php echo $dataProjectId['foto']?>"
+                                                        <img src="../admin/upload/<?php echo isset($_GET['edit']) ? $dataProjectId['foto'] : '' ?>"
                                                             alt="" class="w-50 h-50 mt-4">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="btn-post">
                                                 <button class="btn btn-success" type="submit"
-                                                    name="<?php echo isset($_GET['edit']) ? $dataProjectId['id'] : '' ?>"><?php echo isset($_GET['edit']) ? 'Edit' : 'Add'?>
+                                                    name="<?php echo isset($_GET['edit']) ? 'edit' : 'add' ?>"><?php echo isset($_GET['edit']) ? 'Edit' : 'Add'?>
                                                     Project</button>
                                             </div>
                                         </form>
