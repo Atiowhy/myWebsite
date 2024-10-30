@@ -31,16 +31,19 @@ $queryGetEducation = mysqli_query($connection, "SELECT * FROM  education ORDER B
             <div>
 
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="col-md-8 text text-center">
+                    <div class="col-md-8 text">
                         <div class="img mb-4"></div>
                         <div class="desc">
-                            <img src="admin/upload/<?php echo $resultUser['foto'] ?>" alt=""
-                                class="w-50 rounded shadow">
-                            <h2 class="subheading">Hello I'm</h2>
-                            <h1 class="mb-4"><?php echo $resultUser['name'] . " " . $resultUser['last_name'] ?></h1>
+                            <div class="img d-flex justify-content-center">
+                                <img src="admin/upload/<?php echo $resultUser['foto'] ?>" alt=""
+                                    class="w-50 rounded shadow">
+                            </div>
+                            <h2 class="subheading text-center">Hello I'm</h2>
+                            <h1 class="mb-4 text-center">
+                                <?php echo $resultUser['name'] . " " . $resultUser['last_name'] ?></h1>
 
-                            <p class="mb-4"><?php echo $resultUser['description'] ?></p>
-                            <ul class="ftco-social mt-3">
+                            <p class="mb-4 text-center"><?php echo $resultUser['description'] ?></p>
+                            <ul class="ftco-social mt-3 text-center">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
@@ -52,13 +55,14 @@ $queryGetEducation = mysqli_query($connection, "SELECT * FROM  education ORDER B
                                 <?php while($resultEducation = mysqli_fetch_assoc($queryGetEducation)) : ?>
                                 <div class="col-md-12">
                                     <h3><?php echo $resultEducation['education'] ?></h3>
-                                    <div class="year d-flex justify-content-center">
+                                    <div class="year d-flex">
                                         <p style="margin-right: 10px;">
                                             <?php echo $resultEducation['endroll_education'] ?></p>
 
                                         <p><?php echo $resultEducation['end_year_education'] ?></p>
                                     </div>
-                                    <h5><?php echo $resultEducation['description'] ?></h5>
+                                    <h5><?php echo $resultEducation['title'] ?></h5>
+                                    <p><?php echo $resultEducation['description'] ?></p>
                                 </div>
                                 <?php endwhile; ?>
                             </div>

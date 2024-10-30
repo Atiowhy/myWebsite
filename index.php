@@ -115,38 +115,48 @@ if($countEducation){
                         </div>
                         <?php endwhile; ?>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card shadow">
-                                <div class="card-header text-center">
-                                    Project
+
+                    <section class="statistic-data">
+                        <h1 class="text-center">Statistic</h1>
+                        <p class="text-center">My Personal Data Count</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card shadow">
+                                    <div class="card-header text-center">
+                                        Project
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Total Project</p>
+                                        <h1><?php echo $totalCountProject ?> <span>Project</span></h1>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p>Total Project</p>
-                                    <h1><?php echo $totalCountProject ?> <span>Project</span></h1>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card shadow">
+                                    <div class="card-header text-center">
+                                        Education
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Total Education</p>
+                                        <h1><?php echo $totalCountEducation ?> <span>Education</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card shadow">
+                                    <div class="card-header text-center">
+                                        Lisence
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Total Lisence</p>
+                                        <h1>
+                                            2 Lisence
+                                        </h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card shadow">
-                                <div class="card-header text-center">
-                                    Education
-                                </div>
-                                <div class="card-body">
-                                    <p>Total Education</p>
-                                    <h1><?php echo $totalCountEducation ?> <span>Education</span></h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card shadow">
-                                <div class="card-header text-center">
-                                    Lisence
-                                </div>
-                                <div class="card-body"></div>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
             </section>
             <!-- footer -->

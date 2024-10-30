@@ -13,10 +13,11 @@ if(isset($_POST['add'])){
     // die;
     $education = $_POST['education'];
     $description = $_POST['description'];
+    $title = $_POST['title'];
     $endroll_education = $_POST['endroll_education'];
     $end_year_education = $_POST['end_year_education'];
 
-    $insertDataEducation = mysqli_query($connection, "INSERT INTO education (education,  description, endroll_education, end_year_education) VALUES ('$education', '$description', '$endroll_education', '$end_year_education')");
+    $insertDataEducation = mysqli_query($connection, "INSERT INTO education (education,  description, title, endroll_education, end_year_education) VALUES ('$education', '$description', '$title' '$endroll_education', '$end_year_education')");
     header('location: education.php?insert-edu-success');
     
 }
@@ -30,10 +31,11 @@ $resultGetDataId = mysqli_fetch_assoc($queryGetDataId);
 if(isset($_POST['edit'])){
     $education = $_POST['education'];
     $description = $_POST['description'];
+    $title = $_POST['title'];
     $endroll_education = $_POST['endroll_education'];
     $end_year_education = $_POST['end_year_education'];
 
-    $insertDataProject = mysqli_query($connection, "UPDATE education SET education = '$education', description = '$description', endroll_education = '$endroll_education', end_year_education = '$end_year_education' WHERE id = '$id'");
+    $insertDataProject = mysqli_query($connection, "UPDATE education SET education = '$education', description = '$description', title = '$title', endroll_education = '$endroll_education', end_year_education = '$end_year_education' WHERE id = '$id'");
     header('location: education.php?success-update-edu');
 }
 
@@ -103,10 +105,9 @@ if(isset($_GET['delete'])){
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="" class="form-label">Description</label>
-                                                        <textarea name="description" id="" class="form-control">
-                                                            <?php echo isset($_GET['edit']) ? $resultGetDataId['description'] : ''?>
-                                                        </textarea>
+                                                        <label for="" class="form-label">Title</label>
+                                                        <input type="text" name="title" placeholder="insert your title"
+                                                            class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,7 +131,12 @@ if(isset($_GET['delete'])){
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Description</label>
+                                                    <textarea name="description" id="" class="form-control">
+                                                            <?php echo isset($_GET['edit']) ? $resultGetDataId['description'] : ''?>
+                                                        </textarea>
+                                                </div>
                                             </div>
                                             <div class="btn-post">
                                                 <button class="btn btn-success" type="submit"

@@ -7,9 +7,7 @@
             <li class="<?php echo isset($_GET['about']) ? 'colorlib-active' : '' ?>"><a href="about.php?about">About
                     Me</a></li>
             <li><a href="project.php">Project</a></li>
-            <li><a href="fashion.html">Lisence</a></li>
-            <li><a href="about.html">Experience</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.php">Contact</a></li>
         </ul>
     </nav>
 
@@ -19,7 +17,7 @@
             Copyright &copy;<script>
             document.write(new Date().getFullYear());
             </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by
-            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <a href="https://colorlib.com" target="_blank">AtioWS</a>
         <ul>
             <li><a href="#"><i class="icon-facebook"></i></a></li>
             <li><a href="#"><i class="icon-twitter"></i></a></li>

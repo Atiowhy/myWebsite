@@ -65,6 +65,7 @@ $queryGetEdu = mysqli_query($connection, "SELECT * FROM  education ORDER BY id D
                                                     <tr>
                                                         <th class="text-white">No</th>
                                                         <th class="text-white">Education</th>
+                                                        <th class="text-white">Title</th>
                                                         <th class="text-white">Description</th>
                                                         <th class="text-white">Enroll Education</th>
                                                         <th class="text-white">End Of Year Education</th>
@@ -78,6 +79,7 @@ $queryGetEdu = mysqli_query($connection, "SELECT * FROM  education ORDER BY id D
                                                     <tr>
                                                         <td><?php echo $no++ ?></td>
                                                         <td><?php echo $resultEdu['education'] ?></td>
+                                                        <td><?php echo $resultEdu['title'] ?></td>
                                                         <td><?php echo $resultEdu['description'] ?></td>
                                                         <td><?php echo $resultEdu['endroll_education'] ?></td>
                                                         <td><?php echo $resultEdu['end_year_education'] ?></td>

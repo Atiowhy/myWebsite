@@ -65,22 +65,22 @@ include '../controller/action-user.php';
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                while($dataUser = mysqli_fetch_assoc($queryGetUser)) :
+                                                while($dataUserRow = mysqli_fetch_assoc($queryGetUser)) :
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $no++ ?></td>
-                                                    <td><?php echo $dataUser['name'] ?></td>
-                                                    <td><?php echo $dataUser['email'] ?></td>
+                                                    <td><?php echo $dataUserRow['name'] ?></td>
+                                                    <td><?php echo $dataUserRow['email'] ?></td>
                                                     <td><img width="100"
-                                                            src="../admin/upload/<?php echo $dataUser['foto'] ?>"
+                                                            src="../admin/upload/<?php echo $dataUserRow['foto'] ?>"
                                                             alt="">
                                                     </td>
                                                     <td>
-                                                        <a href="../controller/action-user.php?delete=<?php echo $dataUser['id'] ?>"
+                                                        <a href="../controller/action-user.php?delete=<?php echo $dataUserRow['id'] ?>"
                                                             class="btn btn-danger">Delete</a>
-                                                        <a href="../controller/action-user.php?member=<?php echo $dataUser['id'] ?>"
+                                                        <a href="../controller/action-user.php?member=<?php echo $dataUserRow['id'] ?>"
                                                             class="btn btn-info">Member</a>
-                                                        <a href="../admin/profile.php?edit=<?php echo $dataUser['id'] ?>"
+                                                        <a href="../admin/profile.php?edit=<?php echo $dataUserRow['id'] ?>"
                                                             class="btn btn-warning">Edit</a>
                                                     </td>
                                                 </tr>
