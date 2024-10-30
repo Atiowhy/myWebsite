@@ -1,6 +1,104 @@
 <?php
 session_start();
-include '../controller/action-user.php';
+include '../admin/connection.php';
+// include '../controller/action-user.php';
+
+// get user
+$queryGetUser = mysqli_query($connection, "SELECT * FROM user ");
+
+// foto
+$resultFoto = mysqli_query($connection, "SELECT * FROM user ORDER BY id DESC");
+$rowFoto = mysqli_fetch_assoc($resultFoto);
+
+// insert data
+if(isset($_POST['save'])){
+    // print_r($_POST);
+    // die;
+    $name = $_POST['name'];
+    $password = sha1($_POST['password']);
+        $email = $_POST['email'];
+        $last_name = $_POST['last_name'];
+        $phone = $_POST['phone'];
+        $organization = $_POST['organization'];
+        $address = $_POST['address'];
+        $description = $_POST['description'];
+
+        if(mysqli_num_rows($queryGetUser)){
+            if(!empty($_FILES['foto']['name'])){
+                $nameFile = $_FILES['foto']['name'];
+                $image_size = $_FILES['foto']['size'];
+
+                // extention file
+                $ext = array('png', 'jpg',  'jpeg', 'gif', 'jfif', 'webp');
+                $extImg = pathinfo($nameFile, PATHINFO_EXTENSION);
+
+                // validasi ext jika tidak ada
+                if(!in_array($extImg, $ext)){
+                    echo "<script>alert('File tidak valid')</script>";
+                    die;
+                } else {
+                    $upload = '../admin/upload/';
+                    move_uploaded_file($_FILES['foto']['tmp_name'], $upload . $nameFile);
+                    
+                    $insertUser = mysqli_query($connection, "INSERT INTO user (name, password, email, last_name, phone,  organization, address, description, foto) VALUES ('$name', '$password', '$email', '$last_name', '$phone', '$organization', '$address',  '$description', '$nameFile')");
+                    header('location: ../admin/user.php?success-insert');
+                }
+
+            } else {
+                $insertUser = mysqli_query($connection, "INSERT INTO user (name, email, last_name, phone,  organization, address, description) VALUES ('$name', '$email', '$last_name', '$phone', '$organization', '$address',  '$description')");
+                header('location:  ../admin/user.php?success-insert-without-photo');
+            }
+        } 
+}
+
+// get data edit
+if(isset($_GET['edit'])){
+    $id = $_GET['edit'];
+    $result = mysqli_query($connection, "SELECT * FROM user WHERE id = '$id'");
+    $rowEdit = mysqli_fetch_assoc($result);
+}
+
+// edit data
+if(isset($_POST['edit'])){
+    $id = $_GET['edit'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $last_name = $_POST['last_name'];
+    $phone = $_POST['phone'];
+    $organization = $_POST['organization'];
+    $address = $_POST['address'];
+    $description = $_POST['description'];
+    if($_POST['password']){
+        $password = sha1($_POST['password']);
+    } else {
+        $password = $getDataUserId['password'];
+    }
+
+    if(!empty($_FILES['foto']['name'])){
+            $nameFile = $_FILES['foto']['name'];
+            $image_size = $_FILES['foto']['size'];
+
+            // ext file
+            $ext = array('png', 'jpg', 'jpeg', 'jfif', 'webp');
+            $extImg = pathinfo($nameFile, PATHINFO_EXTENSION);
+
+            // jika ext tidak ada yang terdaftar
+            if(!in_array($extImg, $ext)){
+                echo 'ext tidak ditemukan';
+                die;
+        } else {
+            $upload = 'upload/';
+            move_uploaded_file($_FILES['foto']['tmp_name'], $upload . $nameFile);
+            unlink($upload . $rowFoto['foto']);
+
+            $updateUser = mysqli_query($connection, "UPDATE user SET name = '$name', password = '$password', email = '$email', last_name = '$last_name', phone = '$phone', organization = '$organization', address = '$address',  description = '$description', foto = '$nameFile' WHERE id = '$id'");
+            header('location: user.php?success-edit-with-photo');
+            }  
+        } else {
+            $updateUser = mysqli_query($connection, "UPDATE user SET name = '$name', password = '$password', email = '$email', last_name = '$last_name', phone = '$phone', organization = '$organization', address = '$address',  description = '$description' WHERE id = '$id'");
+            header('location:  user.php?success-edit-without-photo');
+        }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,48 +166,45 @@ include '../controller/action-user.php';
                                     </div>
                                     <hr class="my-0" />
                                     <div class="card-body">
-                                        <form id="formAccountSettings"
-                                            action="../controller/action-user.php?id=<?php echo isset($_GET['edit']) ? $getDataUserId['id'] : '' ?>"
-                                            method="post" enctype="multipart/form-data">
-
+                                        <form action="" method="POST" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
                                                     <label for="firstName" class="form-label">First Name</label>
                                                     <input class="form-control" type="text" id="firstName" name="name"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['name'] : '' ?>"
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['name'] : '' ?>"
                                                         autofocus />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="lastName" class="form-label">Last Name</label>
                                                     <input class="form-control" type="text" name="last_name"
                                                         id="lastName"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['last_name'] : '' ?>" />
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['last_name'] : '' ?>" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="email" class="form-label">E-mail</label>
                                                     <input class="form-control" type="text" id="email" name="email"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['email'] : '' ?>"
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['email'] : '' ?>"
                                                         placeholder="john.doe@example.com" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="organization" class="form-label">Organization</label>
                                                     <input type="text" class="form-control" id="organization"
                                                         name="organization"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['organization'] : '' ?>" />
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['organization'] : '' ?>" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label" for="phoneNumber">Phone Number</label>
                                                     <div class="input-group input-group-merge">
                                                         <span class="input-group-text">ID (+62)</span>
                                                         <input type="text" name="phone"
-                                                            value="<?php echo isset($_GET['edit']) ? $getDataUserId['phone'] : '' ?>"
+                                                            value="<?php echo isset($_GET['edit']) ? $rowEdit['phone'] : '' ?>"
                                                             class="form-control" placeholder="202 555 0111" />
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="address" class="form-label">Address</label>
                                                     <input type="text" class="form-control" name="address"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['address'] : '' ?>"
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['address'] : '' ?>"
                                                         placeholder="Address" />
                                                 </div>
                                             </div>
@@ -117,7 +212,7 @@ include '../controller/action-user.php';
                                                 <div class="col-md-12">
                                                     <label for="address" class="form-label">Password</label>
                                                     <input type="password" class="form-control" name="password"
-                                                        value="<?php echo isset($_GET['edit']) ? $getDataUserId['password'] : '' ?>"
+                                                        value="<?php echo isset($_GET['edit']) ? $rowEdit['password'] : '' ?>"
                                                         placeholder="***" />
                                                 </div>
                                             </div>
@@ -125,7 +220,7 @@ include '../controller/action-user.php';
                                                 <div class="col-md-12">
                                                     <label for="" class="form-label">Description</label>
                                                     <textarea class="form-control" name="description" cols="30"
-                                                        rows="10"><?php echo isset($_GET['edit']) ? $getDataUserId['description'] : '' ?></textarea>
+                                                        rows="10"><?php echo isset($_GET['edit']) ? $rowEdit['description'] : '' ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -133,7 +228,7 @@ include '../controller/action-user.php';
                                                     <label for="" class="form-label">Photo</label>
                                                     <input type="file" name="foto" class="form-control"
                                                         accept=".jpg,.png">
-                                                    <img src="upload/<?php echo isset($_GET['edit']) ? $getDataUserId['foto'] : '' ?>"
+                                                    <img src="upload/<?php echo isset($_GET['edit']) ? $rowEdit['foto'] : '' ?>"
                                                         width="100" class="mt-3" alt="">
                                                 </div>
                                             </div>

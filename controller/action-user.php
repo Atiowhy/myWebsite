@@ -3,7 +3,7 @@ include '../admin/connection.php';
 
 // get User
 $queryGetUser = mysqli_query($connection, "SELECT * FROM user ");
-// $rowDataUser = mysqli_fetch_assoc($queryGetUser);
+$rowDataUser = mysqli_fetch_assoc($queryGetUser);
 
 // querygetfotouser
 $queryFoto = mysqli_query($connection, "SELECT * FROM user");
@@ -67,7 +67,7 @@ if($countMember)
 }
 
 // getid
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+// $id = isset($_GET['id']) ? $_GET['id'] : '';
 
 
 // insert user
@@ -75,6 +75,7 @@ if(isset($_POST['save'])){
     // print_r($_POST);
     // die;
     $name = $_POST['name'];
+    $password = sha1($_POST['password']);
         $email = $_POST['email'];
         $last_name = $_POST['last_name'];
         $phone = $_POST['phone'];
@@ -99,7 +100,7 @@ if(isset($_POST['save'])){
                     $upload = '../admin/upload/';
                     move_uploaded_file($_FILES['foto']['tmp_name'], $upload . $nameFile);
                     
-                    $insertUser = mysqli_query($connection, "INSERT INTO user (name, email, last_name, phone,  organization, address, description, foto) VALUES ('$name', '$email', '$last_name', '$phone', '$organization', '$address',  '$description', '$nameFile')");
+                    $insertUser = mysqli_query($connection, "INSERT INTO user (name, password, email, last_name, phone,  organization, address, description, foto) VALUES ('$name', '$password', '$email', '$last_name', '$phone', '$organization', '$address',  '$description', '$nameFile')");
                     header('location: ../admin/user.php?success-insert');
                 }
 
@@ -111,9 +112,7 @@ if(isset($_POST['save'])){
 }
 
 // get data edit
-
     $idEdit = isset($_GET['edit']) ? $_GET['edit'] : '';
-
     $getDataId = mysqli_query($connection, "SELECT * FROM user WHERE id = '$idEdit'");
     $getDataUserId = mysqli_fetch_assoc($getDataId);
     // print_r($getDataUserId);
@@ -132,6 +131,7 @@ if(isset($_POST['edit'])){
         $organization = $_POST['organization'];
         $address = $_POST['address'];
         $description = $_POST['description'];
+        $id = $_POST['id'];
 
         if($_POST['password']){
             $password = sha1($_POST['password']);
@@ -140,9 +140,9 @@ if(isset($_POST['edit'])){
         }
 
         // checked data
-        $checkDataUserId = mysqli_num_rows($getDataId);
+        // $checkDataUserId = mysqli_num_rows($getDataId);
 
-        if(mysqli_num_rows($queryGetUser)){
+        // if(mysqli_num_rows($queryGetUser)){
         if(!empty($_FILES['foto']['name'])){
             $nameFile = $_FILES['foto']['name'];
             $image_size = $_FILES['foto']['size'];
@@ -160,11 +160,14 @@ if(isset($_POST['edit'])){
             move_uploaded_file($_FILES['foto']['tmp_name'], $upload . $nameFile);
             unlink($upload . $rowFotoUser['foto']);
 
-            if(!$last_name  && !$phone && !$organization && !$address && !$description && !$nameFile){
-                $queryInsertData = mysqli_query($connection, "INSERT INTO user (last_name, phone, organization, address, description, foto) VALUES ('$last_name', '$phone', '$organization', '$address', '$description', '$nameFile',)");
-                print_r($queryInsertData);
-                die;
-                header('location: ../admin/user.php?insert-success');
+            $updateUser = mysqli_query($connection, "UPDATE user SET name = '$name', password = '$password', email = '$email', last_name = '$last_name', phone = '$phone', organization = '$organization', address = '$address',  description = '$description', foto = '$nameFile' WHERE id = '$id'");
+            print_r($updateUser);
+            die;
+            if(!$updateUser){
+                header('location:  ../admin/user.php?error=update');
+            } else {
+                header('location:  ../admin/user.php?success=update');
+            }
             }
 
             
@@ -172,7 +175,7 @@ if(isset($_POST['edit'])){
     }
         
 
-    }
-}
+    
+
 
 ?>

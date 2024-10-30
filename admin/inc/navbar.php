@@ -46,8 +46,7 @@ $rowFotoUser = mysqli_fetch_assoc($queryUserFoto);
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="upload/<?php echo $rowFotoUser['foto'] ?>" alt
-                                            class="w-px-40 h-auto rounded-circle object-fit-cover" />
+                                        <img src="upload/<?php echo $rowFotoUser['foto'] ?>" width="20" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">

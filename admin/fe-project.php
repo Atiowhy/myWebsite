@@ -80,7 +80,11 @@ include '../controller/action-project.php';
                                                         <td><?php echo $projectData['description'] ?></td>
                                                         <td><?php echo $projectData['create_date'] ?></td>
                                                         <td><?php echo $projectData['finish_date'] ?></td>
-                                                        <td><?php echo $projectData['foto'] ?></td>
+                                                        <td>
+                                                            <img class="w-100"
+                                                                src="../admin/upload/<?php echo  $projectData['foto']?>"
+                                                                alt="">
+                                                        </td>
                                                         <td>
                                                             <a href="../admin/add-fe.php?edit=<?php echo $projectData['id'] ?>"
                                                                 class=" btn btn-warning mb-2">Edit</a>

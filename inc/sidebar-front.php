@@ -2,11 +2,13 @@
     <h1 id="colorlib-logo"><a href="index.html">AWS<span>.</span></a></h1>
     <nav id="colorlib-main-menu" role="navigation">
         <ul>
-            <li class="colorlib-active"><a href="index.html">Home</a></li>
-            <li><a href="photography.html">Photography</a></li>
-            <li><a href="travel.html">Travel</a></li>
-            <li><a href="fashion.html">Fashion</a></li>
-            <li><a href="about.html">About</a></li>
+            <li class="<?php echo isset($_GET['home']) ? 'colorlib-active' : '' ?>"><a href="index.php?home">Home</a>
+            </li>
+            <li class="<?php echo isset($_GET['about']) ? 'colorlib-active' : '' ?>"><a href="about.php?about">About
+                    Me</a></li>
+            <li><a href="project.php">Project</a></li>
+            <li><a href="fashion.html">Lisence</a></li>
+            <li><a href="about.html">Experience</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
