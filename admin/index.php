@@ -384,7 +384,8 @@ include '../controller/action-project.php'
                                                 role="tabpanel">
                                                 <div class="d-flex p-4 pt-3">
                                                     <div class="avatar flex-shrink-0 me-3">
-                                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
+                                                        <img src="../assets/admin/assets/img/icons/unicons/wallet.png"
+                                                            alt="User" />
                                                     </div>
                                                     <div>
                                                         <small class="text-muted d-block">Total Balance</small>
@@ -436,8 +437,8 @@ include '../controller/action-project.php'
                                         <ul class="p-0 m-0">
                                             <li class="d-flex mb-4 pb-1">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/paypal.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/paypal.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -453,8 +454,8 @@ include '../controller/action-project.php'
                                             </li>
                                             <li class="d-flex mb-4 pb-1">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/wallet.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/wallet.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -470,8 +471,8 @@ include '../controller/action-project.php'
                                             </li>
                                             <li class="d-flex mb-4 pb-1">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/chart.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/chart.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -487,8 +488,8 @@ include '../controller/action-project.php'
                                             </li>
                                             <li class="d-flex mb-4 pb-1">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/cc-success.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/cc-success.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -504,8 +505,8 @@ include '../controller/action-project.php'
                                             </li>
                                             <li class="d-flex mb-4 pb-1">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/wallet.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/wallet.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -521,8 +522,8 @@ include '../controller/action-project.php'
                                             </li>
                                             <li class="d-flex">
                                                 <div class="avatar flex-shrink-0 me-3">
-                                                    <img src="../assets/img/icons/unicons/cc-warning.png" alt="User"
-                                                        class="rounded" />
+                                                    <img src="../assets/admin/assets/img/icons/unicons/cc-warning.png"
+                                                        alt="User" class="rounded" />
                                                 </div>
                                                 <div
                                                     class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">

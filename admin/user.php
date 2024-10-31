@@ -52,41 +52,43 @@ include '../controller/action-user.php';
                                         <div class="btn-cta d-flex justify-content-end mb-2">
                                             <a href="profile.php" class="btn btn-success">Add</a>
                                         </div>
-                                        <table class="table table-striped shadow">
-                                            <thead class="bg-primary">
-                                                <tr>
-                                                    <th class="text-white">No</th>
-                                                    <th class="text-white">Name</th>
-                                                    <th class="text-white">Email</th>
-                                                    <th class="text-white">Foto</th>
-                                                    <th class="text-white">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
+                                        <div class="table table-responsive">
+                                            <table class="table table-striped shadow">
+                                                <thead class="bg-primary">
+                                                    <tr>
+                                                        <th class="text-white">No</th>
+                                                        <th class="text-white">Name</th>
+                                                        <th class="text-white">Email</th>
+                                                        <th class="text-white">Foto</th>
+                                                        <th class="text-white">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
                                                 $no = 1;
                                                 while($dataUserRow = mysqli_fetch_assoc($queryGetUser)) :
                                                 ?>
-                                                <tr>
-                                                    <td><?php echo $no++ ?></td>
-                                                    <td><?php echo $dataUserRow['name'] ?></td>
-                                                    <td><?php echo $dataUserRow['email'] ?></td>
-                                                    <td><img width="100"
-                                                            src="../admin/upload/<?php echo $dataUserRow['foto'] ?>"
-                                                            alt="">
-                                                    </td>
-                                                    <td>
-                                                        <a href="../controller/action-user.php?delete=<?php echo $dataUserRow['id'] ?>"
-                                                            class="btn btn-danger">Delete</a>
-                                                        <a href="../controller/action-user.php?member=<?php echo $dataUserRow['id'] ?>"
-                                                            class="btn btn-info">Member</a>
-                                                        <a href="../admin/profile.php?edit=<?php echo $dataUserRow['id'] ?>"
-                                                            class="btn btn-warning">Edit</a>
-                                                    </td>
-                                                </tr>
-                                                <?php endwhile; ?>
-                                            </tbody>
-                                        </table>
+                                                    <tr>
+                                                        <td><?php echo $no++ ?></td>
+                                                        <td><?php echo $dataUserRow['name'] ?></td>
+                                                        <td><?php echo $dataUserRow['email'] ?></td>
+                                                        <td><img width="100"
+                                                                src="../admin/upload/<?php echo $dataUserRow['foto'] ?>"
+                                                                alt="">
+                                                        </td>
+                                                        <td>
+                                                            <a href="../controller/action-user.php?delete=<?php echo $dataUserRow['id'] ?>"
+                                                                class="btn btn-danger">Delete</a>
+                                                            <a href="../controller/action-user.php?member=<?php echo $dataUserRow['id'] ?>"
+                                                                class="btn btn-info">Member</a>
+                                                            <a href="../admin/profile.php?edit=<?php echo $dataUserRow['id'] ?>"
+                                                                class="btn btn-warning">Edit</a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endwhile; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
